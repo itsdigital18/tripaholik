@@ -1,0 +1,156 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+	<h:head>
+		<h:title></h:title>
+		<h:outputLabel
+			style="color:green;text-align:left;font-weight: bold;font-size:26px"></h:outputLabel>
+		<f:verbatim
+			style="color:green;text-align:left;font-weight: bold;font-size:26px">
+			<marquee>KONCH KNITS INTERNATIONAL</marquee>
+		</f:verbatim>
+		<style type="text/css">
+		.column1 {
+			width: 100px;
+			height: auto
+		}
+		.myPanelStyle1 {
+			color: yellow;
+			font-weight: bold;
+			font-family: calibri;
+			background: #eeeedd;
+			font-size: 15px;
+		}
+		</style>
+		<script type="text/javascript">
+	     $(document).ready(function() {
+	    	// alert("hai");
+	    	  $(".datepicker").datepicker({
+	    	    showOn: "button",
+	    	    inline: true,
+	    	    buttonImage: "images/calendar_blank.png",
+	    	    buttonImageOnly: true})
+	    	});
+    	</script>
+	</h:head>
+	<h:body>
+		<br />	
+		<br/>
+		<h:form>
+		<p:commandButton id="goHome" value="Home"
+						action="home" />
+		</h:form>
+		<br/>	
+		<h:form>
+			<!-- resizableColumns="true"rules="all" -->
+			<p:panel id="panel2" styleClass="myPanelStyle1"
+				header="ADD Productions " toggleable="true" toggleSpeed="100">
+				<!-- style="margin-top:20px" -->
+				<h:panelGrid columns="4" rules="group" width="100%" border="0">
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="diameter" value="Diameter:" />
+					</p:column>
+					<p:column>
+						<p:inputText styleClass="search_di" id="diameter"
+							value="#{prodRun.diameter}"></p:inputText>
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="partyName" value="PartyName:">
+						</h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="partyName"
+							value="#{prodRun.partyName}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="MillsCounts" value="Mills And Counts:">
+						</h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="MillsCounts"
+							value="#{prodRun.millAndCounts}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="fabric" value="Fabric:">
+						</h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="fabric"
+							value="#{prodRun.fabric}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="rate" value="Rate: "></h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="rate" value="#{prodRun.rate}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="LengthLoop" value="Length And Loop:">
+						</h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="LengthLoop"
+							value="#{prodRun.lengthAndLoop}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							for="programming" value="Programming:">
+						</h:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="programming"
+							value="#{prodRun.programming}" />
+					</p:column>
+					<p:column>
+						<h:outputLabel style="font-weight: bold;font-size:15px"
+							value="Date:">
+						</h:outputLabel>
+					</p:column>
+					<p:calendar value="#{prodRun.dateOfProduction}" pattern="MM/dd/yyyy"></p:calendar>
+					<p:row>
+						<p:column>
+							<h:outputLabel style="font-weight: bold;font-size:15px"
+								value="Production:">
+							</h:outputLabel>
+						</p:column>
+					</p:row>
+					<h:panelGroup>
+						<p:column>
+							<h:outputLabel style="font-weight: bold;font-size:15px"
+								for="productionDayRun" value="Day Run:">
+							</h:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText id="productionDayRun"
+								value="#{prodRun.dayRun}" />
+						</p:column>
+						<p:column>
+							<h:outputLabel style="font-weight: bold;font-size:15px"
+								for="productionNightRun" value="Night Run:">
+							</h:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText id="productionNightRun"
+								value="#{prodRun.nightRun}" />
+						</p:column>
+					</h:panelGroup>
+					<p:commandButton id="addProductions" value="SAVE" action="save" />					
+				</h:panelGrid>
+			</p:panel>					
+		</h:form>
+		<br />	
+	</h:body>
+</f:view>
+</html>

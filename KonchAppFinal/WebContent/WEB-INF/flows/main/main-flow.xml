@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="prodRunsSearchForm">
+	<var name="searchRequest" class="com.konchapp.domain.SearchRequest" />	
+	
+	<input name="prodRunId" />
+
+	<action-state id="prodRunsSearchForm">
+		<evaluate expression="prodRunService.getUserVerify()">
+		</evaluate>
+		<transition on="success" to="searchForm"></transition>
+		<transition on="denied" to="searchForm"></transition>
+	</action-state>
+		
+	<view-state id="searchForm">		
+		<transition on="search" to="prodRunsList"></transition>
+		<transition on="addNew" to="addOrUpdate"></transition>
+	</view-state>	
+
+	<view-state id="prodRunsList">
+		<on-render>
+			<evaluate expression="prodRunService.getProdRuns(searchRequest)"
+				result="flowScope.prodRuns" />
+		</on-render>
+		<transition on="home" to="prodRunsSearchForm"></transition>
+		<transition on="addNew" to="addOrUpdate"/>
+		<transition on="select" to="addOrUpdate"/>	
+	</view-state>	
+	
+	<decision-state id="addOrUpdate">
+        <if test="requestParameters.prodRunId == null" then="addProduction" else="editProduction" />
+    </decision-state>
+    
+    <action-state id="addProduction">	
+    	<evaluate expression="prodRunService.createProductionRun()" result="flowScope.prodRun"/>			
+		<transition to="productionForm" />		
+	</action-state>	
+	
+	<action-state id="editProduction">	
+		<evaluate expression="prodRunService.getProdRunById(requestParameters.prodRunId)"
+						result="flowScope.prodRun" />					
+		<transition to="productionForm" />		
+	</action-state>
+	
+	<action-state id="updateProduction">	
+		<evaluate expression="prodRunService.getProdRunById(prodRunId)"
+						result="flowScope.prodRun" />					
+		<transition to="productionForm" />		
+	</action-state>
+	
+	<view-state id="productionForm">	
+		<transition on="home" to="prodRunsSearchForm"></transition>
+		<transition on="save" to="updateProduction">
+			<evaluate
+				expression="prodRunService.saveProductionRun(prodRun)" result="flowScope.prodRun"/>
+				<set name="flowScope.prodRunId" value="prodRun.prodRunId" />				
+		</transition>		
+	</view-state>
+
+	<end-state id="finish" />
+
+</flow>

@@ -1,0 +1,128 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+
+<h:head>
+		<h:title></h:title>
+		<h:outputLabel
+			style="color:green;text-align:left;font-weight: bold;font-size:26px"></h:outputLabel>
+		<f:verbatim
+			style="color:green;text-align:left;font-weight: bold;font-size:26px">
+			<marquee>KONCH KNITS INTERNATIONAL</marquee>
+		</f:verbatim>		
+		<h:outputStylesheet library="css" name="table-style.css" />
+		<style type="text/css">
+		.column1 {
+			width: 100px;
+			height: auto
+		}
+		.myPanelStyle1 {
+			color: yellow;
+			font-weight: bold;
+			font-family: calibri;
+			background: #eeeedd;
+			font-size: 15px;
+		}
+		</style>
+	</h:head>
+	<h:body>		
+		<br/>
+		<br/>
+		<h:form id="prodRunForm">
+			<p:commandButton id="goHome" value="Home"
+						action="home" /> &nbsp;&nbsp;&nbsp;
+			<p:commandButton id="addNewProduction" value="ADD NEW PRODUCTION"
+						action="addNew" />
+			<br/>
+			<br/>
+		</h:form>
+		<p:panel header="Search Productions " toggleable="true"
+			toggleSpeed="100">
+			<h:form id="prodRunsList">				
+				<p:panelGrid toggleable="true" toggleSpeed="100">
+					<f:facet name="header">
+						<p:row>
+							<p:column rowspan="2">Diameters</p:column>
+							<p:column rowspan="2">Party Name</p:column>
+							<p:column rowspan="2">Mills And Counts</p:column>
+							<p:column rowspan="2">Fabric</p:column>
+							<p:column rowspan="2">Length And Loop</p:column>
+							<p:column rowspan="2">Rate</p:column>
+							<p:column rowspan="2">Total Programming</p:column>
+							<p:column rowspan="2">Today Run</p:column>
+							<p:column rowspan="2">Yesterday Run</p:column>
+							<p:column rowspan="2">Balance</p:column>
+							<p:column rowspan="2">Date</p:column>
+							<p:column colspan="2">Production</p:column>
+							<p:column rowspan="2">Action</p:column>							
+						</p:row>
+						<p:row>
+							<p:column>Day</p:column>
+							<p:column>Night</p:column>
+						</p:row>
+					</f:facet>
+					<c:if test="${empty prodRuns}">
+						<h:outputText value="Hello" />
+					</c:if>
+					<c:otherwise>
+						<c:forEach items="#{prodRuns}" var="prodRun">
+							<p:row>
+								<p:column>
+									<h:outputText value="#{prodRun.diameter}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.partyName}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.millAndCounts}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.fabric}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.lengthAndLoop}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.rate}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.programming}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.todayRun}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.yesterdayRun}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.balance}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.dateOfProduction}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.dayRun}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{prodRun.nightRun}" />
+								</p:column>
+								<p:column>									
+									<h:commandLink value="view" action="select">
+										<f:param id="prodRunIdsss" name="prodRunId" value="#{prodRun.prodRunId}"/>
+									</h:commandLink>
+								</p:column>
+							</p:row>
+						</c:forEach>
+					</c:otherwise>
+				</p:panelGrid>
+			</h:form>
+		</p:panel>
+	</h:body>
+</f:view>
+</html>

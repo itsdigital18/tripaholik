@@ -1,0 +1,104 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+<h:head>
+	<h:title></h:title>
+	<style type="text/css">
+            .column1{width: 100px;height:auto}            
+     </style>
+</h:head>
+<h:body>	
+<!--  
+<br/>
+<p:panel header="Search Productions " toggleable="true" toggleSpeed="100">
+	<h:form>
+		<p:messages globalOnly="true" />
+		<h:panelGrid resizableColumns="true">
+			<p:row>				
+				<p:column width="25%"><h:outputLabel for="search_dia">Diameter: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_dia" value="#{searchRequest.diameter}" /></p:column>
+			  	
+				<p:column width="25%"><h:outputLabel for="search_partyName">PartyName: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_partyName" value="#{searchCriteria.search_partyName}" /></p:column>
+			
+			</p:row>
+			  
+			<p:row>				
+				<p:column width="25%"><h:outputLabel for="search_MillsCounts">Mills And Counts: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_MillsCounts" value="#{searchCriteria.search_MillsCounts}" /></p:column>
+				<p:column width="25%"><h:outputLabel for="search_fabric">Fabric: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_fabric" value="#{searchCriteria.search_fabric}" /></p:column>
+			</p:row>
+			<p:row>				
+				<p:column width="25%"><h:outputLabel for="search_rate">Rate: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_rate" value="#{searchCriteria.search_rate}" /></p:column>
+				<p:column width="25%"><h:outputLabel for="search_production">Production: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_production" value="#{searchCriteria.search_production}" /></p:column>
+			</p:row>
+			<p:row>				
+				<p:column width="25%"><h:outputLabel for="search_LensLoop">Lens And Loop: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_LensLoop" value="#{searchCriteria.search_LensLoop}" /></p:column>
+				<p:column width="25%"><h:outputLabel for="search_programming">Programming: </h:outputLabel></p:column>
+				<p:column width="25%"><h:inputText id="search_programming" value="#{searchCriteria.search_programming}" /></p:column>
+			</p:row>
+				   	
+			<p:commandButton id="searchProductions" value="Search" action="search" update="@form" />
+		</h:panelGrid>		
+	</h:form>			  
+</p:panel>		
+<br/>	
+
+-->	
+<p:panel header="Search Productions " toggleable="true" toggleSpeed="100">
+	<h:form>				
+<p:panelGrid toggleable="true" toggleSpeed="100">
+	<f:facet name="header">
+		<p:row>
+			<p:column rowspan="2">Diameters</p:column>
+			<p:column rowspan="2">Party Name</p:column>
+			<p:column rowspan="2">Mills And Counts</p:column>
+			<p:column rowspan="2">Fabric</p:column>
+			<p:column rowspan="2">Length And Loop</p:column>
+			<p:column rowspan="2">Rate</p:column>
+			<!-- <p:column rowspan="2">Programming</p:column> -->
+			<p:column rowspan="2">Total Programming</p:column>
+			<p:column rowspan="2">Today Run</p:column>
+			<p:column rowspan="2">Yesterday Run</p:column>
+			<p:column rowspan="2">Balance</p:column>
+			<p:column rowspan="2">Date</p:column>
+			<p:column colspan="2">Production</p:column>						
+		</p:row>
+		<p:row>			
+			<p:column>Day</p:column>
+			<p:column>Night</p:column>			
+		</p:row>
+	</f:facet>	
+	<c:forEach items="#{prodRuns}" var="prodRun">
+		<p:row>
+			<p:column><h:outputText value="#{prodRun.diameter}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.partyName}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.millAndCounts}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.fabric}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.lengthAndLoop}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.rate}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.programming}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.todayRun}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.yesterdayRun}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.balance}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.dateOfProduction}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.dayRun}"/></p:column>
+			<p:column><h:outputText value="#{prodRun.nightRun}"/></p:column>
+		</p:row>
+	</c:forEach>					            				        
+</p:panelGrid>	
+</h:form>			  
+</p:panel>			
+</h:body>
+</f:view>
+</html>

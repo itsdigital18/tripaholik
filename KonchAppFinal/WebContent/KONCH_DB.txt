@@ -1,0 +1,25 @@
+CREATE DATABASE konchdb;
+
+CREATE TABLE `tab_prod_run` ( 
+	`prod_run_id` int(6) NOT NULL auto_increment, 
+	`diameter` decimal(6,2) NOT NULL, 
+	`partyName` varchar(100) NOT NULL default '', 
+	`millAndCounts` decimal(6,2) NOT NULL,  
+	`fabric` varchar(100) NOT NULL default '', 
+	`lensAndLoop` decimal(6,2) NOT NULL,
+	`rate` decimal(6,2) NOT NULL,
+	`programming` decimal(6,2) NOT NULL,
+	`dayRun` decimal(6,2) NOT NULL,
+	`nightRun` decimal(6,2) NOT NULL,
+	PRIMARY KEY  (`prod_run_id`)
+) ENGINE=InnoDB;
+
+
+
+INSERT INTO tab_prod_run (diameter, partyName, millAndCounts, fabric, lensAndLoop, 
+rate, programming, dayRun, nightRun) VALUES (10.00, 'Party Name1', 10.00, 
+'Fabrick 1', 10.00, 10.00, 10.00, 10.00, 10.00);
+
+INSERT INTO tab_prod_run (diameter, partyName, millAndCounts, fabric, lensAndLoop, 
+rate, programming, dayRun, nightRun) VALUES (11.00, 'Party Name2', 11.00, 
+'Fabrick 2', 11.00, 11.00, 11.00, 11.00, 11.00);
